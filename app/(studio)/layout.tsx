@@ -1,3 +1,5 @@
+import "../globals.css";
+
 export const metadata = {
   title: "State of Antiquity",
   description: "Website for State of Antiquity",
