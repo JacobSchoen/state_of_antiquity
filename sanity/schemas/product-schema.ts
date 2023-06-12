@@ -4,8 +4,8 @@ const product = {
   type: "document",
   fields: [
     {
-      name: "image",
-      title: "Image",
+      name: "images",
+      title: "Images",
       type: "array",
       of: [
         {
@@ -26,6 +26,11 @@ const product = {
     {
       name: "name",
       title: "Name",
+      type: "string",
+    },
+    {
+      name: "test",
+      title: "Test",
       type: "string",
     },
     {
