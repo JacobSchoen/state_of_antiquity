@@ -5,6 +5,6 @@ export type Product = {
     _createdAt: Date;
     name: string;
     slug: string;
-    image: string[];
+    images: string[];
     details: PortableTextBlock[]
 }

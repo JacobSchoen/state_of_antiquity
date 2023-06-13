@@ -11,9 +11,7 @@ export async function getProducts(): Promise<Product[]> {
         _createdAt,
         name,
         "slug": slug.current,
-        // images: {
-        //   'url': asset->url
-        // },
+        "images": images[].asset->url,
         details
     }`
   );
