@@ -1,9 +1,67 @@
+"use client";
 import { getProducts } from "@/sanity/sanity-utils";
+
 import Image from "next/image";
 import Link from "next/link";
 
+import getStripe from "../../lib/getStripe";
+
 export default async function Home() {
   const products = await getProducts();
+
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+
+    // let lineItems = products.map((item) => {
+    //   return {
+    //     price_data: {
+    //       currency: "usd",
+    //       product_data: {
+    //         name: item.name,
+    //       },
+    //       unit_amount: item.price * 100,
+    //     },
+    //     adjustable_quantity: {
+    //       enabled: true,
+    //       minimum: 1,
+    //     },
+    //     quantity: item.quantity,
+    //   };
+    // });
+
+    let lineItems = [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "T-shirt",
+          },
+          unit_amount: 2000,
+          tax_behavior: "exclusive",
+        },
+        adjustable_quantity: {
+          enabled: true,
+          minimum: 1,
+          maximum: 10,
+        },
+        quantity: 1,
+      },
+    ];
+
+    console.log(lineItems);
+
+    const res = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ lineItems }),
+    });
+
+    const data = await res.json();
+    console.log("id,", data.session.id);
+    stripe.redirectToCheckout({ sessionId: data.session.id });
+  };
 
   return (
     <div>
@@ -39,6 +97,12 @@ export default async function Home() {
             </div>
           </Link>
         ))}
+      </div>
+
+      <div className="btn-container">
+        <button type="button" className="btn" onClick={handleCheckout}>
+          Pay with Stripe
+        </button>
       </div>
     </div>
   );
