@@ -44,7 +44,7 @@ export default async function Home() {
           minimum: 1,
           maximum: 10,
         },
-        quantity: 1,
+        quantity: 2,
       },
     ];
 
@@ -59,7 +59,6 @@ export default async function Home() {
     });
 
     const data = await res.json();
-    console.log("id,", data.session.id);
     stripe.redirectToCheckout({ sessionId: data.session.id });
   };
 
