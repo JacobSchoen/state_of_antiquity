@@ -29,11 +29,6 @@ const product = {
       type: "string",
     },
     {
-      name: "test",
-      title: "Test",
-      type: "string",
-    },
-    {
       name: "slug",
       title: "Slug",
       type: "slug",
