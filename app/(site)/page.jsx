@@ -12,31 +12,14 @@ export default async function Home() {
   const handleCheckout = async () => {
     const stripe = await getStripe();
 
-    // let lineItems = products.map((item) => {
-    //   return {
-    //     price_data: {
-    //       currency: "usd",
-    //       product_data: {
-    //         name: item.name,
-    //       },
-    //       unit_amount: item.price * 100,
-    //     },
-    //     adjustable_quantity: {
-    //       enabled: true,
-    //       minimum: 1,
-    //     },
-    //     quantity: item.quantity,
-    //   };
-    // });
-
-    let lineItems = [
-      {
+    let lineItems = products.map((item) => {
+      return {
         price_data: {
           currency: "usd",
           product_data: {
-            name: "T-shirt",
+            name: item.name,
           },
-          unit_amount: 2000,
+          unit_amount: item.price * 100,
           tax_behavior: "exclusive",
         },
         adjustable_quantity: {
@@ -44,11 +27,9 @@ export default async function Home() {
           minimum: 1,
           maximum: 10,
         },
-        quantity: 2,
-      },
-    ];
-
-    console.log(lineItems);
+        quantity: 1,
+      };
+    });
 
     const res = await fetch("/api/stripe", {
       method: "POST",
