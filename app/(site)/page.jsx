@@ -47,7 +47,7 @@ export default async function Home() {
     <div>
       <h1 className="text-7xl font-extrabold">
         Hello I&apos;m
-        <span className="bg-gradient-to-r from-orange-400 via-red-500 to-purple-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-orange-400 via-red-500 to-pink-400 bg-clip-text text-transparent">
           Devin
         </span>
       </h1>
