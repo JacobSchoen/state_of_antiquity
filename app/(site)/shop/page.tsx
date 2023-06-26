@@ -11,10 +11,10 @@ export default async function Page({ params }: Props) {
         {params.name}
       </h1>
       <div className="flex items-center gap-5 text-sm text-gray-600">
-        <Link href={"/studioShop"} className="hover:underline">
+        <Link href={"/shop/studioShop"} className="hover:underline">
           For the Studio
         </Link>
-        <Link href={"/paintingShop"} className="hover:underline">
+        <Link href={"/shop/paintingShop"} className="hover:underline">
           For Paintings
         </Link>
       </div>
